@@ -1,0 +1,11 @@
+{
+  "name": "github-max-commit",
+  "version": "1.0.0",
+  "description": "GitHub Commit Capacity",
+  "main": "git.js",
+  "scripts": {},
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.0"
+  }
+}
