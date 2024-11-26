@@ -5,7 +5,7 @@ name: Continous Committing With Node
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
   workflow_dispatch:
 
@@ -30,7 +30,7 @@ jobs:
 
       - name: GitHub config
         run: |
-          git config --global user.email "recep.fed@gmail.com"
-          git config --global user.name "booleanrecep"
+          git config --global user.email "nassimlnd37@gmail.com"
+          git config --global user.name "nassimlnd"
       - name: Run Node
         run: node git.js
