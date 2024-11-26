@@ -14,6 +14,7 @@ const gitPull = () => {
 };
 
 const gitCommit = () => {
+    console.log("🚀 : commiting...");
     return exec(
         'git commit --allow-empty -m "go + git + github = 💥"',
         (err, stdout, stderr) => {
@@ -26,25 +27,33 @@ const gitCommit = () => {
 };
 
 const gitPush = () => {
-    return exec("git push", (err, stdout, stderr) => {
-        if (err) {
-            console.log("🔥 push error: ", err);
-            return;
-        }
-        console.log(`🛬 pushed successfully: ${stdout}`);
+    console.log("🚀 : pushing...");
+
+    // promise of exec
+    return new Promise((resolve, reject) => {
+        exec("git push", (err, stdout, stderr) => {
+            if (err) {
+                console.log("🔥 push error: ", err);
+                reject();
+            }
+            console.log(`🚀 : ${stdout}`);
+            resolve();
+        });
     });
 };
 
-const run = () => {
+const run = async () => {
     gitPull();
 
     for (let i = 0; i < commitCount; i++) {
         gitCommit();
 
         if (i % pushThreshold === 0) {
-            gitPush();
+            await gitPush();
         }
     }
 };
 
-run();
+run().catch((err) => {
+    console.log("🔥 error: ", err);
+});
